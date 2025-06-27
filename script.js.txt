@@ -1,0 +1,31 @@
+document.getElementById('registrationForm').addEventListener('submit', function (e) {
+  e.preventDefault(); // prevent page reload
+
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const message = document.getElementById('message');
+
+  // Basic Email Pattern
+  const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+  // Validation
+  if (!name || !email || !phone) {
+    message.textContent = "All fields are required!";
+    message.style.color = "red";
+    return;
+  }
+
+  if (!emailPattern.test(email)) {
+    message.textContent = "Invalid email format!";
+    message.style.color = "red";
+    return;
+  }
+
+  // Success
+  message.textContent = `Thank you ${name}, registration successful!`;
+  message.style.color = "green";
+
+  // Optional: Reset form
+  document.getElementById('registrationForm').reset();
+});
